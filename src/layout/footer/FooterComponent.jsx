@@ -10,6 +10,7 @@ import PortraitIcon from "@mui/icons-material/Portrait";
 import { Link, useLocation } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES.js";
 import { useSelector } from "react-redux";
+import CopyrightComponent from "./UI/CopyrightComponent.jsx";
 
 const FooterComponent = ({ selectedIndex }) => {
   const [value, setValue] = useState(selectedIndex);
@@ -38,6 +39,7 @@ const FooterComponent = ({ selectedIndex }) => {
 
   return (
     <div
+      sx={{ mt: 10 }}
       style={{
         position: "fixed",
         bottom: 0,
@@ -65,7 +67,9 @@ const FooterComponent = ({ selectedIndex }) => {
               icon={link.icon}
               component={Link}
               to={link.to}
-              style={{ color: value === index ? "#3498db" : "#848484" }}
+              style={{
+                color: value === index ? "#3498db" : "#848484",
+              }}
             />
           ) : null
         )}

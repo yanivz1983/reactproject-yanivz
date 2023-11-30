@@ -3,7 +3,7 @@ import CardComponent from "../../components/CardComponent";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { Container, Grid, Typography, Divider } from "@mui/material";
-import Pagination from '@mui/material/Pagination';
+import Pagination from "@mui/material/Pagination";
 
 const FavoriteCardPage = () => {
   const [likedCards, setLikedCards] = useState([]);
@@ -11,7 +11,7 @@ const FavoriteCardPage = () => {
   const [error, setError] = useState(null);
   const userData = useSelector((bigPie) => bigPie.authSlice.userData);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
+  const itemsPerPage = 12;
 
   useEffect(() => {
     const fetchLikedCards = async () => {
