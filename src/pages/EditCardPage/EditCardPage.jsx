@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   TextField,
@@ -8,7 +8,7 @@ import {
   Button,
 } from "@mui/material";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import axios from "axios"; 
+import axios from "axios";
 import ROUTES from "../../routes/ROUTES";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,7 +18,6 @@ const EditCardPage = () => {
     title: "",
     subtitle: "",
     phone: "",
-    add: "",
     mail: "",
     description: "",
     web: "",
@@ -33,6 +32,36 @@ const EditCardPage = () => {
   });
   const { id: _id } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchCardData = async () => {
+      try {
+        const response = await axios.get(`/cards/${_id}`);
+        const cardData = response.data;
+
+        setInputValue({
+          title: cardData.title || "",
+          subtitle: cardData.subtitle || "",
+          phone: cardData.phone || "",
+          mail: cardData.email || "",
+          description: cardData.description || "",
+          web: cardData.web || "",
+          url: cardData.image?.url || "",
+          alt: cardData.image?.alt || "",
+          state: cardData.address?.state || "",
+          country: cardData.address?.country || "",
+          city: cardData.address?.city || "",
+          street: cardData.address?.street || "",
+          houseNumber: cardData.address?.houseNumber || "",
+          zip: cardData.address?.zip || "",
+        });
+      } catch (error) {
+        console.error("Error fetching card data:", error);
+      }
+    };
+
+    fetchCardData();
+  }, [_id]);
 
   const handleInputChange = (e) => {
     setInputValue((currentState) => ({
@@ -84,6 +113,7 @@ const EditCardPage = () => {
       });
 
       navigate(ROUTES.MYCARDS);
+      window.location.reload();
     } catch (err) {
       console.error("Error updating card:", err);
 
@@ -91,7 +121,7 @@ const EditCardPage = () => {
         "Error updating card. Please fix the mistake and try again.",
         {
           position: "top-right",
-          autoClose: false, 
+          autoClose: false,
           hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: true,

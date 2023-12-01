@@ -7,13 +7,14 @@ import {
   Divider,
   Button,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ROUTES from "../../routes/ROUTES";
 import axios from "axios";
 
 const CreateCardPage = () => {
+  const navigate = useNavigate(); // Use useNavigate to get the navigate function
   const [inputsValue, setInputValue] = useState({
     title: "",
     subtitle: "",
@@ -73,8 +74,9 @@ const CreateCardPage = () => {
         theme: "light",
       });
 
+      navigate(ROUTES.MYCARDSPAGE);
     } catch (err) {
-      console.log("err", err.response);
+      console.error("Error creating card:", err);
 
       toast.error("Error creating card. Please try again.", {
         position: "top-right",
