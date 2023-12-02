@@ -47,10 +47,8 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
     if (isLoggedIn) {
       localStorage.removeItem("token");
 
-      // Set a flag in local storage indicating that a toast should be displayed
       localStorage.setItem("showLogoutToast", "true");
 
-      // Refresh the page
       window.location.reload();
     } else {
       navigate(ROUTES.LOGIN);

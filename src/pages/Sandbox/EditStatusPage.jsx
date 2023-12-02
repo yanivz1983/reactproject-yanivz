@@ -39,11 +39,7 @@ const EditStatusPage = () => {
   const handleUpdateUser = async () => {
     try {
       await axios.put(`users/${userId}`, {
-        name: {
-          first: newName,
-          middle: user.name.middle,
-          last: user.name.last,
-        },
+        name: { first: newName, middle: user.name.middle, last: user.name.last },
         phone: newPhone,
         address: { ...newAddress },
         image: { url: user.image.url, alt: user.image.alt },
@@ -81,18 +77,8 @@ const EditStatusPage = () => {
     <div>
       <h1>Edit User Details</h1>
       <p>User ID: {user._id}</p>
-      <input
-        type="text"
-        value={newName}
-        onChange={handleNameChange}
-        disabled={!isCurrentUser}
-      />
-      <input
-        type="text"
-        value={newPhone}
-        onChange={handlePhoneChange}
-        disabled={!isCurrentUser}
-      />
+      <input type="text" value={newName} onChange={handleNameChange} disabled={!isCurrentUser} />
+      <input type="text" value={newPhone} onChange={handlePhoneChange} disabled={!isCurrentUser} />
       <input
         type="text"
         name="country"

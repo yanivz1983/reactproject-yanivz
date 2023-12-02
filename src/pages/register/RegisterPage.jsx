@@ -345,7 +345,7 @@ const RegisterPage = () => {
             </Link>
           </Grid>
         </Grid>
-        <CopyrightComponent />
+        <CopyrightComponent sx={{ mt: 5 }} />
       </Box>
     </Box>
   );

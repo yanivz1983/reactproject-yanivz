@@ -47,7 +47,6 @@ const CardDetailsPage = () => {
           console.error("Invalid response structure. Please check the API.");
           setError("Invalid response structure. Please check the API.");
         }
-  
         setLoading(false);
       } catch (error) {
         console.error("Error fetching card details:", error);

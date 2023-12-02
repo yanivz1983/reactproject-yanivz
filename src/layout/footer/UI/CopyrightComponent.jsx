@@ -1,16 +1,17 @@
 import { Link, Typography } from "@mui/material";
 
-const CopyrightComponent = (props) => {
+const CopyrightComponent = ({ isDarkTheme, ...props }) => {
   return (
     <Typography
       variant="body2"
       color="text.secondary"
       align="center"
       {...props}
+      sx={{ color: isDarkTheme ? "#000" : "white" }}
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Yaniv Zinger
+        Yaniv Zinger{" "}
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
